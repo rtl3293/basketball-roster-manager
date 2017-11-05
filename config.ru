@@ -5,6 +5,7 @@ if ActiveRecord::Migrator.needs_migration?
 end
 
 run ApplicationController
+use TeamPlayersController
 use CoachesController
 use TeamsController
 use PlayersController
