@@ -5,11 +5,6 @@ class TeamsController < ApplicationController
     erb :"/teams/index.html"
   end
 
-  # GET: /teams/new
-  get "/teams/new" do
-    erb :"/teams/new.html"
-  end
-
   # POST: /teams
   post "/teams" do
     redirect "/teams"
