@@ -11,14 +11,23 @@ class CoachesController < ApplicationController
 
   # GET: /coaches/new
   get "/coaches/new" do
+    @teams = Team.all.collect do |team|
+       if team.coach == nil
+         team
+       end
+    end
+    @teams.compact!
+    binding.pry
     erb :"/coaches/new.html"
   end
 
   # POST: /coaches
   post "/coaches" do
     @coach = Coach.find_by(username: params["username"])
+    # binding.pry
     if @coach && @coach.authenticate(params["password"])
       session[:user_id] = @coach.id
+      binding.pry
       redirect to "/coaches/#{@coach.id}"
     else
       redirect to "/failure"
@@ -27,11 +36,11 @@ class CoachesController < ApplicationController
 
   # GET: /coaches/5
   get "/coaches/:id" do
-    if logged_in?
-      @coach = current_user
-
+    @coach = current_user
+    binding.pry
+    if logged_in? && @coach.id == params["id"].to_i
+      binding.pry
       @team = @coach.team
-      @players = @team.players
       erb :"/coaches/show.html"
     else
       redirect to '/failure'
