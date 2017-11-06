@@ -4,7 +4,7 @@ class ApplicationController < Sinatra::Base
 
   configure do
     enable :sessions
-    set :sessions_secret, "basketball"
+    set :session_secret, "basketball"
     set :public_folder, 'public'
     set :views, 'app/views'
   end
@@ -17,4 +17,13 @@ class ApplicationController < Sinatra::Base
     erb :failure
   end
 
+  helpers do
+    def current_user
+      Coach.find(session[:user_id])
+    end
+
+    def logged_in?
+      !!session[:user_id]
+    end
+  end
 end

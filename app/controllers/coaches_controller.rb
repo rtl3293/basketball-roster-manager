@@ -27,9 +27,15 @@ class CoachesController < ApplicationController
 
   # GET: /coaches/5
   get "/coaches/:id" do
-    binding.pry
-    @coach = Coach.find(session[:user_id])
-    erb :"/coaches/show.html"
+    if logged_in?
+      @coach = current_user
+
+      @team = @coach.team
+      @players = @team.players
+      erb :"/coaches/show.html"
+    else
+      redirect to '/failure'
+    end
   end
 
   # GET: /coaches/5/edit
