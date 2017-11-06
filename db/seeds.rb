@@ -15,8 +15,8 @@ sixers = Team.create(team_name: "Sixers")
 celtics = Team.create(team_name: "Celtics")
 
 
-sixers.coach = Coach.create(name: "Brett Brown")
-celtics.coach = Coach.create(name: "Brad Stevens")
+sixers.coach = Coach.create(name: "Brett Brown", username: "coachbrown", password:"sixerscoach")
+celtics.coach = Coach.create(name: "Brad Stevens", username: "coachstevens", password:"celticscoach")
 
 sixers_players.each do |player|
   player.team = sixers

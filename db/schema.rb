@@ -11,13 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171105025252) do
+ActiveRecord::Schema.define(version: 20171106022259) do
 
   create_table "coaches", force: :cascade do |t|
     t.string   "name"
     t.integer  "team_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "username"
+    t.string   "password_digest"
   end
 
   create_table "players", force: :cascade do |t|
