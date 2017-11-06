@@ -5,6 +5,10 @@ class CoachesController < ApplicationController
     erb :"/coaches/index.html"
   end
 
+  get '/coaches/login' do
+    erb :"/coaches/login"
+  end
+
   # GET: /coaches/new
   get "/coaches/new" do
     erb :"/coaches/new.html"
@@ -12,11 +16,19 @@ class CoachesController < ApplicationController
 
   # POST: /coaches
   post "/coaches" do
-    redirect "/coaches"
+    @coach = Coach.find_by(username: params["username"])
+    if @coach && @coach.authenticate(params["password"])
+      session[:user_id] = @coach.id
+      redirect to "/coaches/#{@coach.id}"
+    else
+      redirect to "/failure"
+    end
   end
 
   # GET: /coaches/5
   get "/coaches/:id" do
+    binding.pry
+    @coach = Coach.find(session[:user_id])
     erb :"/coaches/show.html"
   end
 
