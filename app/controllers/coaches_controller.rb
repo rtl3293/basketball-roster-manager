@@ -17,7 +17,7 @@ class CoachesController < ApplicationController
        end
     end
     @teams.compact!
-    binding.pry
+    # binding.pry
     erb :"/coaches/new.html"
   end
 
