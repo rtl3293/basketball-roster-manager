@@ -10,7 +10,8 @@
 </tr>
 <% @players.each do |player| %>
   <tr>
-  <td><a href=<%= "/players/#{player.id}"%>><%= player.name %></a></td><td><%= (player.points/player.games.to_f).round(1) %></td>
+  <td><a href=<%= "/players/#{player.id}"%>><%= player.name %></a></td>
+  <td><%= (player.points/player.games.to_f).round(1) %></td>
   <td><%= (player.assists/player.games.to_f).round(1) %></td><td><%= (player.rebounds/player.games.to_f).round(1) %></td>
   </tr>
 <% end %>

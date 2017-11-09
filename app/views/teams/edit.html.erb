@@ -7,7 +7,8 @@
   <% @players.each do |player| %>
   <p><%= player.name %> <input type="checkbox" name="player[name][]" value=<%= player.name %> <%= "checked" if player.team == @team %>></p>
   <% end %>
-  <h2>Update Record:</h2>
+  <p>New Player: <input type="checkbox" name="" value=""><input type="text" name="player[name][]" value=""></input></p>
+  <h2>Update Record: </h2>
   <p>Wins: <input type="text" name="team[wins]" value=""></p>
   <p>Losses: <input type="text" name="team[losses]" value=""></p>
   <input type="submit" name="submit" value="Submit Changes">

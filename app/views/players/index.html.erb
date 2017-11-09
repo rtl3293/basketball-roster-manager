@@ -1,1 +1,12 @@
-<h1>This is the Model's index page.</h1>
+<h1>League Players</h1>
+
+<table style="width 100%">
+  <tr>
+    <th>Player Name</th><th>Team</th>
+  </tr>
+  <% @players.each do |player| %>
+  <tr>
+  <td><a href=<%= "/players/#{player.id}"%>><%= player.name %></a></td><td><%= !!player.team == true ? player.team.team_name : "Free Agent"  %></td>
+  </tr>
+  <% end %>
+  </table>

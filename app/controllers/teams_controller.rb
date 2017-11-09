@@ -17,6 +17,7 @@ class TeamsController < ApplicationController
     if logged_in?
       @team = Team.find(params[:id])
       @players = @team.players
+      binding.pry
       erb :"/teams/show.html"
     else
       redirect to '/coaches/login'
@@ -38,7 +39,6 @@ class TeamsController < ApplicationController
   # PATCH: /teams/5
   patch "/teams/:id/edit" do
     @team = Team.find(params[:id])
-    # binding.pry
     if params["player"]["name"].length == 5
       @team.update_roster(params["player"]["name"])
       @team.wins = params["team"]["wins"] if !params["team"]["wins"].empty?

@@ -24,14 +24,14 @@ ActiveRecord::Schema.define(version: 20171109161316) do
 
   create_table "players", force: :cascade do |t|
     t.string   "name"
-    t.integer  "points"
-    t.integer  "assists"
-    t.integer  "rebounds"
-    t.integer  "games"
-    t.integer  "minutes"
+    t.integer  "points",     default: 0
+    t.integer  "assists",    default: 0
+    t.integer  "rebounds",   default: 0
+    t.integer  "games",      default: 0
+    t.integer  "minutes",    default: 0
     t.integer  "team_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "teams", force: :cascade do |t|

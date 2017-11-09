@@ -2,17 +2,14 @@ class PlayersController < ApplicationController
 
   # GET: /players
   get "/players" do
-    erb :"/players/index.html"
-  end
-
-  # GET: /players/new
-  get "/players/new" do
-    erb :"/players/new.html"
-  end
-
-  # POST: /players
-  post "/players" do
-    redirect "/players"
+    if logged_in?
+      @players = Player.all.sort do |a, b|
+        a.points <=> b.points
+      end
+      erb :"/players/index.html"
+    else
+      redirect to '/coaches/login'
+    end
   end
 
   # GET: /players/5
