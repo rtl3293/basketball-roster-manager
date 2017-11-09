@@ -1,6 +1,6 @@
 class AddWinsAndLossesToTeam < ActiveRecord::Migration
   def change
-    add_column :teams, :wins, :integer
-    add_column :teams, :losses, :integer
+    add_column :teams, :wins, :integer, :default => 0
+    add_column :teams, :losses, :integer, :default => 0
   end
 end

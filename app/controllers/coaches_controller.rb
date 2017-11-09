@@ -6,19 +6,48 @@ class CoachesController < ApplicationController
   end
 
   get '/coaches/login' do
-    erb :"/coaches/login"
+    if !logged_in?
+      erb :"/coaches/login"
+    else
+      @coach = current_user
+      redirect to "/coaches/#{@coach.id}"
+    end
   end
 
   # GET: /coaches/new
   get "/coaches/new" do
-    @teams = Team.all.collect do |team|
-       if team.coach == nil
-         team
-       end
+    if !logged_in?
+      @teams = Team.all.collect do |team|
+         if team.coach == nil
+           team
+         end
+      end
+      @teams.compact!
+      # binding.pry
+      erb :"/coaches/new.html"
+    else
+      redirect to "/coaches"
     end
-    @teams.compact!
-    # binding.pry
-    erb :"/coaches/new.html"
+  end
+
+  post "/coaches/new" do
+    if !params["coach"]["name"].empty? && !params["coach"]["username"].empty? && !params["coach"]["password"].empty?
+      if Coach.find_by(username: params["coach"]["username"])
+        redirect to '/coaches/login'
+      else
+        binding.pry
+        @coach = Coach.create(params["coach"])
+        if Team.find_by(params["team"])
+          @coach.team = Team.find_by(params["team"])
+        else
+          @coach.team = Team.create(params["team"])
+        end
+        session[:user_id] = @coach.id
+        redirect to "/coaches/#{@coach.id}"
+      end
+    else
+      redirect to '/coaches/new'
+    end
   end
 
   # POST: /coaches

@@ -37,10 +37,10 @@ ActiveRecord::Schema.define(version: 20171109161316) do
   create_table "teams", force: :cascade do |t|
     t.string   "team_name"
     t.integer  "coach_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "wins"
-    t.integer  "losses"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "wins",       default: 0
+    t.integer  "losses",     default: 0
   end
 
 end

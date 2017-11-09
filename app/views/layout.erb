@@ -15,7 +15,9 @@
 </head>
 <body>
   <div class="wrapper">
-
+    <% if logged_in? %>
+    <a href=<%="/coaches/#{current_user.id}" %>>Home</a>
+    <% end %>
       <%= yield %>
 
     <footer class="branding">

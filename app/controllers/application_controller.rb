@@ -17,6 +17,11 @@ class ApplicationController < Sinatra::Base
     erb :failure
   end
 
+  get "/logout" do
+    session.clear
+    redirect to '/'
+  end
+
   helpers do
     def current_user
       Coach.find(session[:user_id])
