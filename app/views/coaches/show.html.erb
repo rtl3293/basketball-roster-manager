@@ -1,11 +1,17 @@
 <h1>Welcome Coach <%=@coach.name %></h1>
 
 
-<h3><%= @team.team_name %> Record</h3>
+<h3><%= @team.team_name %> Record: <%= "#{@team.wins}-#{@team.losses}" %></h3>
 
 
-<ul>
-  <!-- <% @players.each do |player| %>
-    <li><%= player.name %></li><br>
-  <% end %> -->
-</ul>
+<table>
+  <tr>
+  <th>Player Name</th><th>Points/Game</th><th>Assists/Game</th><th>Rebounds/Game</th>
+  </tr>
+  <% @players.each do |player| %>
+    <tr>
+    <td><%= player.name %></td><td><%= (player.points/player.games.to_f).round(2) %></td>
+    <td><%= (player.assists/player.games.to_f).round(2) %></td><td><%= (player.rebounds/player.games.to_f).round(2) %></td>
+    </tr>
+  <% end %>
+</table>

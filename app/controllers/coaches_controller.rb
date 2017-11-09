@@ -27,7 +27,7 @@ class CoachesController < ApplicationController
     # binding.pry
     if @coach && @coach.authenticate(params["password"])
       session[:user_id] = @coach.id
-      binding.pry
+      # binding.pry
       redirect to "/coaches/#{@coach.id}"
     else
       redirect to "/failure"
@@ -37,10 +37,11 @@ class CoachesController < ApplicationController
   # GET: /coaches/5
   get "/coaches/:id" do
     @coach = current_user
-    binding.pry
+    # binding.pry
     if logged_in? && @coach.id == params["id"].to_i
-      binding.pry
+      # binding.pry
       @team = @coach.team
+      @players = @team.players
       erb :"/coaches/show.html"
     else
       redirect to '/failure'
