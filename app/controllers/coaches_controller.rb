@@ -79,7 +79,13 @@ class CoachesController < ApplicationController
 
   # GET: /coaches/5/edit
   get "/coaches/:id/edit" do
-    erb :"/coaches/edit.html"
+    if logged_in?
+      @coach = Coach.find(params[:id])
+      erb :"/coaches/edit.html" if @coach == current_user
+      redirect to '/coaches' if @coach != current_user
+    else
+      redirect to '/coaches/login'
+    end
   end
 
   # PATCH: /coaches/5

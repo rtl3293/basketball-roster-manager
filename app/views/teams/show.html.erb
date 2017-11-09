@@ -1,1 +1,21 @@
-<h1><%= @team.name %></h1>
+<h1><%= @team.team_name %></h1>
+
+
+
+
+<h3></h3>
+<table style="width 100%">
+<tr>
+<th>Player Name</th><th>Points/Game</th><th>Assists/Game</th><th>Rebounds/Game</th>
+</tr>
+<% @players.each do |player| %>
+  <tr>
+  <td><a href=<%= "/players/#{player.id}"%>><%= player.name %></a></td><td><%= (player.points/player.games.to_f).round(1) %></td>
+  <td><%= (player.assists/player.games.to_f).round(1) %></td><td><%= (player.rebounds/player.games.to_f).round(1) %></td>
+  </tr>
+<% end %>
+</table>
+
+<% if @team.coach == current_user %>
+<a href=<%= "/teams/#{@team.id}/edit"%>></a>
+<% end %>

@@ -3,7 +3,6 @@ class TeamsController < ApplicationController
   # GET: /teams
   get "/teams" do
     if logged_in?
-      binding.pry
       @teams = Team.all.sort do |a,b|
         a.wins <=> b.wins
       end
@@ -16,6 +15,9 @@ class TeamsController < ApplicationController
   # GET: /teams/5
   get "/teams/:id" do
     if logged_in?
+
+      @team = Team.find(params[:id])
+      @players = @team.players
       erb :"/teams/show.html"
     else
       redirect to '/coaches/login'
