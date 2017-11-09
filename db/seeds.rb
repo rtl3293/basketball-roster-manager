@@ -10,11 +10,11 @@ Player.create(name: "Jaylen", points: 160, assists: 53, rebounds: 76, games: 12,
 Player.create(name: "Al", points: 160, assists: 46, rebounds: 80, games: 10, minutes: 350),
 Player.create(name: "Jayson", points: 155, assists: 40, rebounds: 76, games: 11,minutes: 365)]
 
-Player.create(name: "Lebron")
-Player.create(name: "Russ")
-Player.create(name: "KD")
-Player.create(name: "Boogie")
-Player.create(name: "DWade")
+Player.create(name: "Lebron", points: 178, assists: 80, rebounds: 101, games: 10, minutes: 353)
+Player.create(name: "Russ", points: 164, assists: 29, rebounds: 81, games: 8, minutes: 221)
+Player.create(name: "KD", points: 125, assists: 27.2, rebounds: 23, games: 8, minutes: 262.4)
+Player.create(name: "Boogie", points: 99, assists: 25.2, rebounds: 18, games: 9, minutes: 280)
+Player.create(name: "DWade", points: 153, assists: 14, rebounds: 57, games: 10, minutes: 305)
 
 
 

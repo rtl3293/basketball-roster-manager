@@ -15,7 +15,6 @@ class TeamsController < ApplicationController
   # GET: /teams/5
   get "/teams/:id" do
     if logged_in?
-
       @team = Team.find(params[:id])
       @players = @team.players
       erb :"/teams/show.html"
@@ -26,12 +25,26 @@ class TeamsController < ApplicationController
 
   # GET: /teams/5/edit
   get "/teams/:id/edit" do
-    erb :"/teams/edit.html"
+    @team = Team.find(params[:id])
+    redirect to "/coaches/login" if !logged_in?
+    if @team.coach == current_user
+      @players = Player.all
+      erb :"/teams/edit.html"
+    else
+      redirect to "/teams/#{@team.id}"
+    end
   end
 
   # PATCH: /teams/5
-  patch "/teams/:id" do
-    redirect "/teams/:id"
+  patch "/teams/:id/edit" do
+    @team = Team.find(params[:id])
+    # binding.pry
+    if params["player"]["name"].length == 5
+      @team.update_roster(params["player"]["name"])
+      redirect to "/teams/#{@team.id}"
+    else
+      redirect to "/teams/#{@team.id}/edit"
+    end
   end
 
   # DELETE: /teams/5/delete

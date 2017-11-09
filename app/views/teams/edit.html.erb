@@ -1,1 +1,11 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h1>Edit <%= @team.team_name %></h1>
+
+<h2>Edit Roster</h2>
+
+<form action=<%= "/teams/#{@team.id}/edit" %> method="post">
+  <input type="hidden" name="_method" value="patch">
+  <% @players.each do |player| %>
+  <p><%= player.name %> <input type="checkbox" name="player[name][]" value=<%= player.name %> <%= "checked" if player.team == @team %>></p>
+  <% end %>
+  <input type="submit" name="submit" value="Submit Roster Changes">
+</form>
