@@ -1,1 +1,8 @@
-<h1>This is the Model's index page.</h1>
+<h1>Basketball Teams</h1>
+
+
+<ul>
+  <% @teams.each do |team| %>
+    <li><a href=<%= "/teams/#{team.id}"%>><%= team.name %></a> Record: <%= team.wins %>-<%= team.losses %></li>
+  <% end %>
+</ul>

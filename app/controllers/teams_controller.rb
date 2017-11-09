@@ -2,17 +2,20 @@ class TeamsController < ApplicationController
 
   # GET: /teams
   get "/teams" do
-    erb :"/teams/index.html"
-  end
-
-  # POST: /teams
-  post "/teams" do
-    redirect "/teams"
+    if logged_in?
+      @teams = Team.all
+      erb :"/teams/index.html"
+    else
+      redirect to '/coaches/login'
   end
 
   # GET: /teams/5
   get "/teams/:id" do
-    erb :"/teams/show.html"
+    if logged_in?
+      erb :"/teams/show.html"
+    else
+      redirect to '/coaches/login'
+    end
   end
 
   # GET: /teams/5/edit
