@@ -21,6 +21,9 @@
       <%= yield %>
 
     <footer class="branding">
+      <% if logged_in? %>
+      <a href=<%="/logout" %>>Logout</a>
+      <% end %>
       <small>&copy; 2017 <strong>Basketball Roster Manager</strong></small>
     </footer>
   </div>
