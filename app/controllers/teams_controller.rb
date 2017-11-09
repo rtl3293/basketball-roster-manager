@@ -17,7 +17,7 @@ class TeamsController < ApplicationController
     if logged_in?
       @team = Team.find(params[:id])
       @players = @team.players
-      binding.pry
+      # binding.pry
       erb :"/teams/show.html"
     else
       redirect to '/coaches/login'

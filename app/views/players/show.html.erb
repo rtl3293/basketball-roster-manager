@@ -1,10 +1,21 @@
-<h1>This is the show page for an individual instance of your model.</h1>
-<tr>
-<th>Player Name</th><th>Points/Game</th><th>Assists/Game</th><th>Rebounds/Game</th>
-</tr>
-<% @players.each do |player| %>
+<h1><%= @player.name %></h1>
+
+<table style="width 100%">
   <tr>
-  <td><%= player.name %></td><td><%= (player.points/player.games.to_f).round(2) %></td>
-  <td><%= (player.assists/player.games.to_f).round(2) %></td><td><%= (player.rebounds/player.games.to_f).round(2) %></td>
+    <th>Team</th><th>Points/Game</th><th>Assists/Game</th><th>Rebounds/Game</th><th>Total Points</th><th>Total Assists</th><th>Total Rebounds</th><th>Games Played</th><th>Total Minutes</th>
   </tr>
+  <tr>
+    <td><a href=<%= "/teams/#{@team.id}"%>><%= @team.team_name %></a></td>
+
+    <td><%= @player.games != 0 ? (@player.points/@player.games.to_f).round(1) : "0" %></td>
+    <td><%= @player.games != 0 ? (@player.assists/@player.games.to_f).round(1) : "0" %></td>
+    <td><%= @player.games != 0 ? (@player.rebounds/@player.games.to_f).round(1) : "0" %></td>
+    <td><%= @player.points %></td><td><%= @player.assists %></td>
+    <td><%= @player.rebounds %></td><td><%= @player.games %></td>
+    <td><%= @player.minutes %></td>
+  </tr>
+</table><br>
+
+<% if @coach == current_user %>
+  <a href=<%= "/players/#{@player.id}/edit" %>>Edit Player</a>
 <% end %>

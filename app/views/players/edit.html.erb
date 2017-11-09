@@ -1,1 +1,11 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h1>Update <%= @player.name %></h1>
+
+<form action=<%= "/players/#{@player.id}/edit" %> method="post">
+  <input type="hidden" name="_method" value="patch">
+  <p>Update Points: <input type="text" name="player[points]" value=""></p>
+  <p>Update Assists: <input type="text" name="player[assists]" value=""></p>
+  <p>Update Rebounds: <input type="text" name="player[rebounds]" value=""></p>
+  <p>Update Games: <input type="text" name="player[games]" value=""></p>
+  <p>Update Minutes: <input type="text" name="player[minutes]" value=""></p>
+  <input type="submit" name="submit" value="Update Stats">
+</form>

@@ -14,16 +14,29 @@ class PlayersController < ApplicationController
 
   # GET: /players/5
   get "/players/:id" do
-    erb :"/players/show.html"
+    if logged_in?
+      @player = Player.find(params[:id])
+      @coach = @player.coach
+      @team = @player.team
+      erb :"/players/show.html"
+    else
+      redirect to '/coaches/login'
+    end
   end
 
   # GET: /players/5/edit
   get "/players/:id/edit" do
-    erb :"/players/edit.html"
+    @player = Player.find(params[:id])
+    if logged_in? && @player.coach == current_user
+      erb :"/players/edit.html"
+    else
+      redirect to "/players/#{@player.id}"
+    end
   end
 
   # PATCH: /players/5
-  patch "/players/:id" do
+  patch "/players/:id/edit" do
+    binding.pry
     redirect "/players/:id"
   end
 
