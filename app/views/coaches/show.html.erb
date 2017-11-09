@@ -4,14 +4,14 @@
 <h3><%= @team.team_name %> Record: <%= "#{@team.wins}-#{@team.losses}" %></h3>
 
 
-<table>
+<table style="width 100%">
   <tr>
-  <th>Player Name</th><th>Points/Game</th><th>Assists/Game</th><th>Rebounds/Game</th>
+  <th>Team Name</th><th>Points/Game</th><th>Assists/Game</th><th>Rebounds/Game</th>
   </tr>
-  <% @players.each do |player| %>
-    <tr>
-    <td><%= player.name %></td><td><%= (player.points/player.games.to_f).round(2) %></td>
-    <td><%= (player.assists/player.games.to_f).round(2) %></td><td><%= (player.rebounds/player.games.to_f).round(2) %></td>
-    </tr>
+  <tr>
+    <td><a href=<%="/teams/#{@team.id}" %>><%= @team.team_name %></a></td>
+  <% @team.team_stats.each do |stat| %>
+    <td><%= (stat/@team.total_games.to_f).round(2) %></td>
   <% end %>
+</tr>
 </table>
