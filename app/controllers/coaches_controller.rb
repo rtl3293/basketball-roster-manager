@@ -65,15 +65,14 @@ class CoachesController < ApplicationController
 
   # GET: /coaches/5
   get "/coaches/:id" do
-    @coach = current_user
+    @coach = Coach.find(params[:id])
     # binding.pry
-    if logged_in? && @coach.id == params["id"].to_i
+    if logged_in?
       # binding.pry
       @team = @coach.team
-      @players = @team.players
       erb :"/coaches/show.html"
     else
-      redirect to '/failure'
+      redirect to '/coaches/login'
     end
   end
 
@@ -81,8 +80,12 @@ class CoachesController < ApplicationController
   get "/coaches/:id/edit" do
     if logged_in?
       @coach = Coach.find(params[:id])
-      erb :"/coaches/edit.html" if @coach == current_user
-      redirect to '/coaches' if @coach != current_user
+      @teams = Team.all
+      if @coach == current_user
+        erb :"/coaches/edit.html"
+      else
+        redirect to '/coaches'
+      end
     else
       redirect to '/coaches/login'
     end
@@ -90,7 +93,18 @@ class CoachesController < ApplicationController
 
   # PATCH: /coaches/5
   patch "/coaches/:id" do
-    redirect "/coaches/:id"
+    binding.pry
+    @coach = Coach.find(params[:id])
+    if !params["team"]["team_name"].empty?
+      if Team.find_by(params["team"])
+        @coach = Team.find_by(params["team"])
+      else
+        @coach = Team.create(params["team"])
+      end
+      redirect "/coaches/#{@coach.id}"
+    else
+      redirect to "/coaches/#{@coach.id}/edit"
+    end
   end
 
   # DELETE: /coaches/5/delete

@@ -14,8 +14,8 @@
   <td><%= (player.assists/player.games.to_f).round(1) %></td><td><%= (player.rebounds/player.games.to_f).round(1) %></td>
   </tr>
 <% end %>
-</table>
+</table><br>
 
 <% if @team.coach == current_user %>
-<a href=<%= "/teams/#{@team.id}/edit"%>></a>
+<a href=<%= "/teams/#{@team.id}/edit"%>>Edit Team</a>
 <% end %>

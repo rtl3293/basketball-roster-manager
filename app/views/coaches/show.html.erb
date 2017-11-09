@@ -14,4 +14,8 @@
     <td><%= (stat/@team.total_games.to_f).round(2) %></td>
   <% end %>
 </tr>
-</table>
+</table><br>
+
+<% if @coach == current_user %>
+  <a href=<%= "/coaches/#{@coach.id}/edit"%>>Edit Coach</a>
+<% end %>

@@ -1,1 +1,12 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h1>Edit <%= @coach.name %></h1>
+
+
+<h3>Change Team by choosing a new team: </h3>
+<form class="" action=<%= "/coaches/#{@coach.id}" %> method="post">
+  <input type="hidden" name="_method" value="patch">
+  <% @teams.each do |team| %>
+  <p><input type="radio" name="team[team_name]" value=<%= team.team_name%>><%= team.team_name%></p>
+  <% end %>
+  <input type="radio" name="team[team_name]" value="">New Team: <input type="text" name="new_team[team_name]" value=""></input> </input>
+  <input type="submit" name="submit" value="Submit Changes">
+</form>
