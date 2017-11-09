@@ -41,6 +41,9 @@ class TeamsController < ApplicationController
     # binding.pry
     if params["player"]["name"].length == 5
       @team.update_roster(params["player"]["name"])
+      @team.wins = params["team"]["wins"] if !params["team"]["wins"].empty?
+      @team.losses = params["team"]["losses"] if !params["team"]["losses"].empty?
+      @team.save
       redirect to "/teams/#{@team.id}"
     else
       redirect to "/teams/#{@team.id}/edit"
