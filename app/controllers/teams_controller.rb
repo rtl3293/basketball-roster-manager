@@ -3,10 +3,14 @@ class TeamsController < ApplicationController
   # GET: /teams
   get "/teams" do
     if logged_in?
-      @teams = Team.all
+      binding.pry
+      @teams = Team.all.sort do |a,b|
+        a.wins <=> b.wins
+      end
       erb :"/teams/index.html"
     else
       redirect to '/coaches/login'
+    end
   end
 
   # GET: /teams/5
