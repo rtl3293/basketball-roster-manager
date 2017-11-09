@@ -35,7 +35,6 @@ class CoachesController < ApplicationController
       if Coach.find_by(username: params["coach"]["username"])
         redirect to '/coaches/login'
       else
-        binding.pry
         @coach = Coach.create(params["coach"])
         if Team.find_by(params["team"])
           @coach.team = Team.find_by(params["team"])

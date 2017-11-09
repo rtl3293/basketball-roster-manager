@@ -37,7 +37,6 @@ class PlayersController < ApplicationController
   # PATCH: /players/5
   patch "/players/:id/edit" do
     @player = Player.find(params[:id])
-    binding.pry
     @player.update_stats(params["player"])
     redirect "/players/#{@player.id}"
   end
