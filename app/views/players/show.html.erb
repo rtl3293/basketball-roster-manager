@@ -1,1 +1,10 @@
 <h1>This is the show page for an individual instance of your model.</h1>
+<tr>
+<th>Player Name</th><th>Points/Game</th><th>Assists/Game</th><th>Rebounds/Game</th>
+</tr>
+<% @players.each do |player| %>
+  <tr>
+  <td><%= player.name %></td><td><%= (player.points/player.games.to_f).round(2) %></td>
+  <td><%= (player.assists/player.games.to_f).round(2) %></td><td><%= (player.rebounds/player.games.to_f).round(2) %></td>
+  </tr>
+<% end %>
