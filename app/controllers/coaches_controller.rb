@@ -109,6 +109,13 @@ class CoachesController < ApplicationController
 
   # DELETE: /coaches/5/delete
   delete "/coaches/:id/delete" do
-    redirect "/coaches"
+    @coach = Coach.find(params[:id])
+    if @coach == current_user
+      @coach.delete
+      session.clear
+      redirect to "/"
+    else
+      redirect to "/coaches/#{@coach.id}"
+    end
   end
 end

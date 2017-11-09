@@ -18,4 +18,8 @@
 
 <% if @coach == current_user %>
   <a href=<%= "/coaches/#{@coach.id}/edit"%>>Edit Coach</a>
+  <form action=<%= "/coaches/#{@coach.id}/delete"%> method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" name="submit" value="Retire">
+  </form>
 <% end %>
