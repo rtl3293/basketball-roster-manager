@@ -13,6 +13,7 @@ gem "tux"
 
 group :production do
   gem 'pg'
+  gem 'activerecord-postgresql-adapter'
 end
 
 group :development, :test do
