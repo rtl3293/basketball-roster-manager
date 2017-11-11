@@ -39,7 +39,7 @@ class TeamsController < ApplicationController
   # PATCH: /teams/5
   patch "/teams/:id/edit" do
     @team = Team.find(params[:id])
-    if params["player"]["name"].length == 5
+    if params["player"]["name"].length <= 5
       @team.update_roster(params["player"]["name"])
       @team.wins = params["team"]["wins"] if !params["team"]["wins"].empty?
       @team.losses = params["team"]["losses"] if !params["team"]["losses"].empty?

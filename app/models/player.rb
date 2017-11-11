@@ -3,6 +3,7 @@ class Player < ActiveRecord::Base
   has_one :coach, through: :team
   validates_associated :team
 
+  
   def update_stats(params)
     self.points += params["points"].to_i if params["points"] != ""
     self.assists += params["assists"].to_i if params["assists"] != ""
