@@ -5,7 +5,9 @@
 <form action=<%= "/teams/#{@team.id}/edit" %> method="post">
   <input type="hidden" name="_method" value="patch">
   <% @players.each do |player| %>
+  <% if player.team = nil || player.team == @team %>
   <p><%= player.name %> <input type="checkbox" name="player[name][]" value=<%= player.name %> <%= "checked" if player.team == @team %>></p>
+  <% end %>
   <% end %>
   <p>New Player: <input type="checkbox" name="" value=""><input type="text" name="player[name][]" value=""></input></p>
   <h2>Update Record: </h2>
