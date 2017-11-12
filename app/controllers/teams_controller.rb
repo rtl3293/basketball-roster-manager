@@ -28,6 +28,7 @@ class TeamsController < ApplicationController
   get "/teams/:id/edit" do
     @team = Team.find(params[:id])
     redirect to "/coaches/login" if !logged_in?
+    binding.pry
     if @team.coach == current_user
       @players = Player.all
       erb :"/teams/edit.html"

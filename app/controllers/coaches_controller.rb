@@ -64,8 +64,8 @@ class CoachesController < ApplicationController
 
   # GET: /coaches/5
   get "/coaches/:id" do
-    @coach = Coach.find(params[:id])
     # binding.pry
+    @coach = current_user
     if logged_in?
       # binding.pry
       @team = @coach.team
