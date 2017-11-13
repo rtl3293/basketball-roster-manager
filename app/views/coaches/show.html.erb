@@ -11,7 +11,7 @@
   <tr>
     <td><a href=<%="/teams/#{@team.id}" %>><%= @team.team_name %></a></td>
   <% @team.team_stats.each do |stat| %>
-    <% if !@team.total_games == 0 %>
+    <% if @team.total_games != 0 %>
       <td><%= (stat/@team.total_games.to_f).round(2) %></td>
     <% else %>
       <td>0.0</td>
