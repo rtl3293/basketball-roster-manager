@@ -2,9 +2,8 @@ class CoachesController < ApplicationController
 
   # GET: /coaches
   get "/coaches" do
-    @coaches = Coach.all.sort do |a, b|
-      a.team.wins <=> b.team.wins
-    end
+    redirect to "/coaches/login" if !logged_in?
+    @coaches = Coach.all
     binding.pry
     erb :"/coaches/index.html"
   end
