@@ -18,9 +18,8 @@ Player.create(name: "DWade", points: 153, assists: 14, rebounds: 57, games: 10, 
 
 
 
-sixers = Team.create(team_name: "Sixers")
-celtics = Team.create(team_name: "Celtics")
-Team.create(team_name: "All-NBA")
+sixers = Team.create(team_name: "Sixers", wins: 6, losses: 4)
+celtics = Team.create(team_name: "Celtics", wins: 8, losses: 2)
 
 
 sixers.coach = Coach.create(name: "Brett Brown", username: "coachbrown", password:"sixerscoach")

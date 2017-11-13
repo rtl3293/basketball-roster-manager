@@ -2,6 +2,10 @@ class CoachesController < ApplicationController
 
   # GET: /coaches
   get "/coaches" do
+    @coaches = Coach.all.sort do |a, b|
+      a.team.wins <=> b.team.wins
+    end
+    binding.pry
     erb :"/coaches/index.html"
   end
 
@@ -36,13 +40,9 @@ class CoachesController < ApplicationController
         redirect to '/coaches/login'
       else
         @coach = Coach.create(params["coach"])
-        if Team.find_by(params["team"])
-          @coach.team = Team.find_by(params["team"])
-        else
-          @coach.team = Team.create(params["team"])
-        end
+        @coach.team = Team.create(params["team"])
         session[:user_id] = @coach.id
-        redirect to "/coaches/#{@coach.id}"
+        redirect to "/teams/#{@coach.team.id}/edit"
       end
     else
       redirect to '/coaches/new'

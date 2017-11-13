@@ -6,11 +6,7 @@
   <input type="text" name="coach[username]" placeholder="Username"><br>
   <input type="text" name="coach[password]" placeholder="Password"><br>
 
-  <h3>Select an available team to coach:</h3>
-  <% @teams.each do |team| %>
-  <label><%= team.team_name %><input type="checkbox" name="team[team_name]" value=<%= team.team_name %>></label>
-  <% end %>
-  <h3>Or Create a new team:</h3>
-  <input type="text" name="team[team_name]" placeholder="Team Name">
+  <h3>Create a new team:</h3>
+  <input type="text" name="team[team_name]" placeholder="Team Name"></input>
   <input type="submit" name="submit" value="Join">
 </form>

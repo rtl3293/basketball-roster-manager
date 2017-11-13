@@ -1,1 +1,9 @@
-<h1>This is the Model's index page.</h1>
+<h1>League Coaches</h1>
+
+
+<ol>
+  <% @coaches.each do |coach|%>
+    <li><a href=<%="/coaches/#{coach.id}" %>><%= coach.name %></a></li>
+  <% end %>
+
+</ol>
