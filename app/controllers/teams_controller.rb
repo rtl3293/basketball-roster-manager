@@ -17,7 +17,7 @@ class TeamsController < ApplicationController
     if logged_in?
       @team = Team.find(params[:id])
       @players = @team.players
-      # binding.pry
+      #
       erb :"/teams/show.html"
     else
       redirect to '/coaches/login'
@@ -28,7 +28,7 @@ class TeamsController < ApplicationController
   get "/teams/:id/edit" do
     @team = Team.find(params[:id])
     redirect to "/coaches/login" if !logged_in?
-    # binding.pry
+    #
     if @team.coach == current_user
       @players = Player.all
       erb :"/teams/edit.html"
@@ -42,7 +42,7 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     params["player"]["name"].delete_if {|x| x.empty?}
     if params["player"]["name"].length <= 5
-      # binding.pry
+      #
       @team.update_roster(params["player"]["name"])
       @team.wins = params["team"]["wins"] if !params["team"]["wins"].empty?
       @team.losses = params["team"]["losses"] if !params["team"]["losses"].empty?

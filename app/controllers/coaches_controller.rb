@@ -4,7 +4,6 @@ class CoachesController < ApplicationController
   get "/coaches" do
     redirect to "/coaches/login" if !logged_in?
     @coaches = Coach.all
-    binding.pry
     erb :"/coaches/index.html"
   end
 
@@ -26,7 +25,7 @@ class CoachesController < ApplicationController
          end
       end
       @teams.compact!
-      # binding.pry
+      #  
       erb :"/coaches/new.html"
     else
       redirect to "/coaches"
@@ -51,10 +50,10 @@ class CoachesController < ApplicationController
   # POST: /coaches
   post "/coaches" do
     @coach = Coach.find_by(username: params["username"])
-    # binding.pry
+    #
     if @coach && @coach.authenticate(params["password"])
       session[:user_id] = @coach.id
-      # binding.pry
+      #
       redirect to "/coaches/#{@coach.id}"
     else
       redirect to "/failure"
@@ -63,10 +62,10 @@ class CoachesController < ApplicationController
 
   # GET: /coaches/5
   get "/coaches/:id" do
-    # binding.pry
+    #
     if logged_in?
       @coach = Coach.find(params[:id])
-      # binding.pry
+      #
       @team = @coach.team
       erb :"/coaches/show.html"
     else
@@ -91,7 +90,7 @@ class CoachesController < ApplicationController
 
   # PATCH: /coaches/5
   patch "/coaches/:id" do
-    binding.pry
+
     @coach = Coach.find(params[:id])
     if !params["team"]["team_name"].empty?
       if Team.find_by(params["team"])

@@ -10,13 +10,13 @@ class Team < ActiveRecord::Base
         player = Player.find_by(name: player)
       else
         new_players = player.split(", ")
-        # binding.pry
+        #
         new_players.each do |new_player|
           player = Player.create(name: new_player)
           player.team = self
           player.save
         end
-        # binding.pry
+        #
       end
       player.team = self
       player.save
