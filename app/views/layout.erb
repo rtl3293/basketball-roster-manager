@@ -17,6 +17,9 @@
   <div class="wrapper">
     <% if logged_in? %>
     <a href=<%="/coaches/#{current_user.id}" %>>Home</a>
+    <a href=<%="/coaches" %>>Coaches</a>
+    <a href=<%="/players" %>>Players</a>
+    <a href=<%="/teams" %>>Teams</a>
     <% end %>
       <%= yield %>
 
